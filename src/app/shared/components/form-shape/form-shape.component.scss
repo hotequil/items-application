@@ -1,0 +1,51 @@
+.form-shape{
+    $three-columns-width: 1400px;
+    $two-columns-width: 800px;
+    $one-columns-width: 600px;
+    $limit-columns: 4;
+
+    &__fieldset{
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__legend{
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-bottom: var(--space);
+    }
+
+    &__content{
+        display: grid;
+        grid-gap: var(--space);
+        margin-bottom: var(--space);
+        grid-template-columns: repeat($limit-columns, 1fr);
+
+        @media(max-width: $three-columns-width){
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media(max-width: $two-columns-width){
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media(max-width: $one-columns-width){
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        > ::ng-deep *{
+            &.form-shape__field{
+                &--100{
+                    grid-column: 1 / #{$limit-columns};
+                }
+            }
+        }
+    }
+
+    &__actions{
+        display: flex;
+        align-items: center;
+        column-gap: var(--space);
+        justify-content: flex-end;
+    }
+}

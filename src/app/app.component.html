@@ -1,0 +1,15 @@
+<mat-drawer-container class="app" autosize>
+    <mat-drawer #drawer [opened]="true" class="app__drawer" [mode]="mode">
+        <app-menu [drawer]="drawer"></app-menu>
+    </mat-drawer>
+
+    <div class="app__content">
+        <app-header [drawer]="drawer"></app-header>
+
+        <main class="app__routes">
+            <router-outlet></router-outlet>
+        </main>
+
+        <app-footer></app-footer>
+    </div>
+</mat-drawer-container>

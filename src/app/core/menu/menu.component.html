@@ -1,0 +1,7 @@
+<mat-selection-list [multiple]="false" class="menu">
+    <mat-list-option *ngFor="let item of MENU" class="menu__item"
+                     (click)="close()"
+                     [selected]="isSelected(item.path)">
+        <a [routerLink]="item.path" class="menu__link">{{ item.name }}</a>
+    </mat-list-option>
+</mat-selection-list>

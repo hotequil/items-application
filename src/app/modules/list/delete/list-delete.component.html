@@ -1,0 +1,19 @@
+<app-form-shape [dialogMode]="true"
+                title="Alerta de exclusão">
+
+    <p class="form-shape__field form-shape__field--100 no-margin">
+        Você realmente deseja excluir o item {{ item.name }}?
+    </p>
+
+    <app-basic-button color="primary"
+                      (clickIn)="dialogService.close()"
+                      data-action
+                      text="Fechar">
+    </app-basic-button>
+    <app-basic-button color="primary"
+                      data-action
+                      type="submit"
+                      (clickIn)="onSubmit()"
+                      text="Excluir">
+    </app-basic-button>
+</app-form-shape>

@@ -1,0 +1,11 @@
+@import "src/stylesheets/placeholders";
+
+.header{
+    &__menu-button{
+        margin-right: var(--space);
+    }
+
+    &__title{
+        @extend %ellipsis;
+    }
+}

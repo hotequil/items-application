@@ -1,0 +1,12 @@
+<header class="header">
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <app-icon-button class="header__menu-button"
+                             icon="menu"
+                             (clickIn)="drawer.toggle()"
+                             [text]="drawer.opened ? 'Fechar menu lateral' : 'Abrir menu lateral'">
+            </app-icon-button>
+            <span class="header__title">{{ toolbarTitle }}</span>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</header>

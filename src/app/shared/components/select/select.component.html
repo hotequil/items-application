@@ -1,0 +1,13 @@
+<mat-form-field appearance="fill"
+                [formGroup]="form"
+                class="select">
+    <mat-label>{{ label }}</mat-label>
+    <mat-select [formControl]="field"
+                [required]="required">
+        <mat-option *ngFor="let option of options"
+                    [value]="option[valueProperty]">
+            {{ option[nameProperty] }}
+        </mat-option>
+    </mat-select>
+    <mat-error *ngIf="formValidator.isFieldInvalid(field)">{{ formValidator.setError(field) }}</mat-error>
+</mat-form-field>

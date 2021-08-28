@@ -1,0 +1,9 @@
+<button [disabled]="disabled"
+        (click)="clickIn.next()"
+        mat-icon-button
+        [type]="type"
+        [matTooltip]="text"
+        [attr.aria-label]="text"
+        [color]="color">
+    <mat-icon aria-hidden="true">{{ icon }}</mat-icon>
+</button>

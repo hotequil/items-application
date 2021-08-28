@@ -1,0 +1,31 @@
+<mat-form-field class="input"
+                [formGroup]="form"
+                appearance="fill">
+    <mat-label>{{ label }}</mat-label>
+
+    <input *ngIf="!currencyMode; else currencyTemplate"
+           [type]="type"
+           [required]="required"
+           matInput
+           [dropSpecialCharacters]="false"
+           [appAutofocus]="autofocus"
+           [mask]="mask"
+           [formControl]="field"
+           [placeholder]="placeholder">
+
+    <ng-template #currencyTemplate>
+        <input type="text"
+               currencyMask
+               [options]="currencyOptions"
+               [required]="required"
+               matInput
+               [appAutofocus]="autofocus"
+               [formControl]="field"
+               [placeholder]="placeholder">
+    </ng-template>
+
+    <span *ngIf="suffix" matSuffix>&nbsp; {{ suffix }}</span>
+    <mat-error *ngIf="formValidator.isFieldInvalid(field)">{{ formValidator.setError(field) }}</mat-error>
+    <mat-hint *ngIf="maxlength && field?.value" align="end">{{ field.value.length }}/{{ maxlength }}</mat-hint>
+    <mat-hint *ngIf="hint">{{ hint }}</mat-hint>
+</mat-form-field>

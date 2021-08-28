@@ -1,0 +1,46 @@
+<div *ngIf="!form; else formTemplate" class="form-shape">
+    <div class="form-shape__fieldset">
+        <ng-container *ngTemplateOutlet="structureTemplate"></ng-container>
+    </div>
+</div>
+
+<ng-template #formTemplate>
+    <form [formGroup]="form" class="form-shape" (ngSubmit)="submitForm.next()">
+        <fieldset class="form-shape__fieldset">
+            <ng-container *ngTemplateOutlet="structureTemplate"></ng-container>
+        </fieldset>
+    </form>
+</ng-template>
+
+<ng-template #structureTemplate>
+    <legend *ngIf="!dialogMode; else titleDialog" class="form-shape__legend">{{ title }}</legend>
+    <ng-template #titleDialog>
+        <h2 mat-dialog-title class="form-shape__legend">{{ title }}</h2>
+    </ng-template>
+
+    <div class="form-shape__content" *ngIf="!dialogMode; else contentDialog">
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+    </div>
+    <ng-template #contentDialog>
+        <div mat-dialog-content class="form-shape__content">
+            <ng-container *ngTemplateOutlet="content"></ng-container>
+        </div>
+    </ng-template>
+
+    <div class="form-shape__actions" *ngIf="!dialogMode; else actionsDialog">
+        <ng-container *ngTemplateOutlet="actions"></ng-container>
+    </div>
+    <ng-template #actionsDialog>
+        <div mat-dialog-actions class="form-shape__actions">
+            <ng-container *ngTemplateOutlet="actions"></ng-container>
+        </div>
+    </ng-template>
+</ng-template>
+
+<ng-template #content>
+    <ng-content></ng-content>
+</ng-template>
+
+<ng-template #actions>
+    <ng-content select="[data-action]"></ng-content>
+</ng-template>

@@ -1,0 +1,24 @@
+.list{
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--space);
+
+    &__button{
+        align-self: flex-end;
+    }
+
+    &__actions{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        column-gap: var(--half-space);
+    }
+
+    &__content{
+        overflow-x: auto;
+    }
+
+    &__table{
+        width: 100%;
+    }
+}

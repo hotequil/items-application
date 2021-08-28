@@ -1,0 +1,78 @@
+<app-form-shape [form]="form"
+                (submitForm)="onSubmit()"
+                [dialogMode]="editMode"
+                [title]="editMode ? 'Edição de item' : 'Criação de item'">
+    <app-input [form]="form"
+               [maxlength]="MAX_LENGTH_NAME"
+               [required]="true"
+               [autofocus]="true"
+               label="Nome do item"
+               placeholder="Coloque o nome do item"
+               name="name">
+    </app-input>
+
+    <app-select [required]="true"
+                name="unit"
+                [form]="form"
+                valueProperty="type"
+                label="Unidade de medida"
+                [options]="quantityTypes">
+    </app-select>
+
+    <app-input [form]="form"
+               [suffix]="unit?.value"
+               [mask]="maskQuantity"
+               hint="Use o ponto para separar as casas decimais se necessário"
+               label="Quantidade"
+               placeholder="Coloque a quantidade"
+               name="quantity">
+    </app-input>
+
+    <app-input [form]="form"
+               [required]="true"
+               [currencyMode]="true"
+               label="Preço"
+               placeholder="Coloque o preço"
+               name="price">
+    </app-input>
+
+    <app-checkbox [form]="form"
+                  name="perishableProduct"
+                  label="Produto perecível">
+    </app-checkbox>
+
+    <app-datepicker label="Data de validade"
+                    [form]="form"
+                    [filter]="formValidator.filterDateBiggerOrEqualToday"
+                    hint="Apenas datas maiores ou igual ao dia de hoje são permitidas"
+                    name="expirationDate">
+    </app-datepicker>
+
+    <app-datepicker label="Data de fabricação"
+                    [form]="form"
+                    [required]="true"
+                    name="manufacturingDate">
+    </app-datepicker>
+
+    <app-button *ngIf="!editMode" data-action href="/lista" text="Cancelar"></app-button>
+    <app-button *ngIf="!editMode"
+                type="submit"
+                data-action
+                [disabled]="formValidator.disableButton(form)"
+                text="Criar">
+    </app-button>
+
+    <app-basic-button color="primary"
+                      *ngIf="editMode"
+                      data-action
+                      (clickIn)="dialogService.close()"
+                      text="Fechar">
+    </app-basic-button>
+    <app-basic-button color="primary"
+                      *ngIf="editMode"
+                      data-action
+                      type="submit"
+                      [disabled]="formValidator.disableButton(form)"
+                      text="Salvar">
+    </app-basic-button>
+</app-form-shape>
